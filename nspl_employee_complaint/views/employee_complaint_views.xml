@@ -1,0 +1,77 @@
+<odoo>
+    <record id="view_employee_complaint_form" model="ir.ui.view">
+        <field name="name">employee.complaint.form</field>
+        <field name="model">employee.complaint</field>
+        <field name="arch" type="xml">
+            <form string="Employee Complaint">
+                <header>
+                    <button name="action_set_pending" type="object" string="Pending" class="oe_highlight"
+                            invisible="state == 'pending'"/>
+
+                    <button name="action_set_resolved" type="object" string="Resolved" class="oe_highlight"
+                            invisible="state == 'resolved'"/>
+
+                    <field name="state" widget="statusbar" statusbar_visible="resolved,pending"/>
+                </header>
+                <sheet>
+                    <field name="name" style="font-weight: bold; font-size: 35px" placeholder="e.g. Payroll Issue"/>
+                    <group>
+                        <group>
+                            <field name="employee_id"/>
+                            <field name="complaint_name"/>
+                            <field name="issue"/>
+                            <field name="action_taken_from_company"/>
+                        </group>
+                        <group>
+                            <field name="issue_date"/>
+                            <field name="resolved_date"/>
+                            <field name="has_effect_on_work"/>
+                            <field name="has_financial_effect"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Suggestion">
+                            <field name="suggestion" widget="text"/>
+                        </page>
+                    </notebook>
+                </sheet>
+
+            </form>
+        </field>
+    </record>
+
+    <record id="view_employee_complaint_tree" model="ir.ui.view">
+        <field name="name">employee.complaint.tree</field>
+        <field name="model">employee.complaint</field>
+        <field name="arch" type="xml">
+            <tree string="Employee Complaint">
+                <field name="employee_id"/>
+                <field name="name"/>
+                <field name="complaint_name"/>
+                <field name="has_effect_on_work"/>
+                <field name="has_financial_effect"/>
+
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="action_employee_complaint" model="ir.actions.act_window">
+        <field name="name">Employee Complaint</field>
+        <field name="res_model">employee.complaint</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_id" ref="view_employee_complaint_tree"/>
+    </record>
+
+    <menuitem id="employee_complaint_menu"
+              name="Employee Complaint"
+              parent="hr.menu_hr_root"
+              sequence="10"/>
+
+    <menuitem id="employee_complaint_form_menu"
+              name="Employee Complaint Form"
+              parent="employee_complaint_menu"
+              action="action_employee_complaint"
+              sequence="10"/>
+
+</odoo>
