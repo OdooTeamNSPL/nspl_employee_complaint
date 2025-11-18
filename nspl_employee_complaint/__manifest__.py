@@ -1,6 +1,6 @@
 {
     'name': 'Employee Complaint',
-    'version': '18.0',
+    'version': '19.0.1',
     'summary':
         """
 The Employee Complaint module lets employees submit and track complaints within Odoo HR, streamlining issue resolution and promoting transparency. It's ideal for improving workplace communication and formalizing grievance management.
